@@ -1,0 +1,12 @@
+
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    groovy 'org.codehaus.groovy:groovy-all:1.6.4'
+    groovy 'com.google.guava:guava-collections:r03'
+}
+
