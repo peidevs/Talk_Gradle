@@ -1,0 +1,20 @@
+
+task foo << {
+    println "starting foo"
+    bar.ext["numTimes"] = ( System.currentTimeMillis() % 4 ) + 1
+} 
+
+task bar(dependsOn: foo) << {
+    println "starting bar" 
+    
+    echo(bar.ext["numTimes"])
+}
+
+// define a function
+void echo(def n)  {
+    if (n % 2 == 0) {
+        n.times { println "hello!" }
+    } else {
+        n.times { println "HELLO!" }
+    }
+}

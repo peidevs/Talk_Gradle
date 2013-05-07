@@ -1,0 +1,7 @@
+
+task hello 
+
+hello.description = "this is a simple task"
+hello.doFirst { System.out.println("hello") }
+hello.doLast { println "world" }
+hello << { println "!" }
