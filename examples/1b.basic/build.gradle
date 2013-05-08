@@ -1,20 +1,22 @@
 
-task foo << {
-    println "starting foo"
-    bar.ext["numTimes"] = ( System.currentTimeMillis() % 4 ) + 1
+task compile << {
+    println "compiling..."
+    test.ext["numTests"] = ( System.currentTimeMillis() % 4 ) + 1
 } 
 
-task bar(dependsOn: foo) << {
-    println "starting bar" 
+task test(dependsOn: compile) << {
+    println "testing..." 
     
-    echo(bar.ext["numTimes"])
+    echo(test.ext["numTests"])
 }
 
 // define a function
 void echo(def n)  {
-    if (n % 2 == 0) {
-        n.times { println "hello!" }
-    } else {
-        n.times { println "HELLO!" }
-    }
+    n.times { i ->
+        if (i % 2 == 0) {
+            println "test #${i}"
+        } else {
+            println "TEST #${i}"
+        }
+    } 
 }
