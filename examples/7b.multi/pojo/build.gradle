@@ -1,0 +1,17 @@
+
+sourceSets.test.java.srcDirs 'test'
+sourceSets.main.resources.srcDirs 'config'
+
+configurations.compile {
+    exclude group: 'javax.transaction'
+}
+
+dependencies {
+    compile project(':common')
+    compile 'hibernate:hibernate:3.0rc1'
+
+    testCompile 'junit:junit:3.8.1'
+
+    runtime 'hsqldb:hsqldb:1.8.0.7'
+    runtime files('../../lib/jta-1.1.jar')    
+}

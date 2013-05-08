@@ -1,0 +1,38 @@
+
+apply plugin: 'jetty'
+
+configurations.compile {
+    exclude group: 'javax.transaction'
+}
+
+dependencies {
+    compile project(':common')
+    compile project(':pojo')
+
+    compile group: 'org.hibernate', name: 'hibernate', version: '3.2.4.ga'
+    compile 'javax.servlet:servlet-api:2.4'
+}
+
+war.version = ''
+war.baseName = 'music'
+war.webXml = file('src/web.xml')
+
+httpPort=8088
+stopPort=8089
+stopKey='codeRed'
+
+gradle.taskGraph.whenReady { graph ->
+    if (graph.hasTask(runWarTest)) {
+        jettyRun.daemon = true
+        jettyRunWar.daemon = true
+    }
+}
+
+task runWarTest(dependsOn: jettyRunWar) << {
+    URL url = new URL("http://localhost:${httpPort}/music/MusicServ")
+    println "\n\n" + url.text + "\n"
+    jettyStop.execute()
+}    
+
+
+

@@ -1,0 +1,13 @@
+
+configurations.compile {
+    exclude group: 'javax.transaction'
+}
+
+dependencies {
+    compile 'org.hibernate:hibernate:3.2.4.ga'
+
+    runtime files('../lib/jta-1.1.jar')
+    runtime 'hsqldb:hsqldb:1.8.0.7'    
+}
+
+
