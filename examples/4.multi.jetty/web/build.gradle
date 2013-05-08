@@ -1,10 +1,6 @@
 
 apply plugin: 'jetty'
 
-configurations.compile {
-    exclude group: 'javax.transaction'
-}
-
 dependencies {
     compile project(':common')
     compile project(':pojo')

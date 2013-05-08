@@ -1,8 +1,4 @@
 
-configurations.compile {
-    exclude group: 'javax.transaction'
-}
-
 dependencies {
     compile 'org.hibernate:hibernate:3.2.4.ga'
 
